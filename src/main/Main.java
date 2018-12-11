@@ -7,21 +7,22 @@ public class Main {
 
 	private static Scanner sc;
 	private static AlgoritmoGuloso ag;
-	//private static ProgramacaoDinamica pd;
+	private static ProgramacaoDinamica pd;
 
 	public static void main(String[] args) {
 		
-		int tamCartao, qtdFrases;
+		int tamCartao, qtdFrases, count = 0;
 		
 		boolean entInvalida = false;
 		
 		ArrayList<Integer> entradasQtdCaract;
 		ArrayList<Integer> entradasQtdFrases;
 		ArrayList<Integer> totalFrasesAG = new ArrayList<Integer>();
+		ArrayList<Integer> totalFrasesPD = new ArrayList<Integer>();
 		
 		sc = new Scanner(System.in);
 		ag = new AlgoritmoGuloso();
-		//pd = new ProgramacaoDinamica();
+		pd = new ProgramacaoDinamica();
 		
 		
 		System.out.println("Informe o tamanho do cartao e a quantidade de frases:");
@@ -40,7 +41,7 @@ public class Main {
 			
 			
 			if(tamCartao == 0 && qtdFrases == 0){
-				ImprimeResultado(totalFrasesAG);
+				ImprimeResultado(totalFrasesAG, totalFrasesPD, count);
 				break;
 			}
 		
@@ -56,25 +57,30 @@ public class Main {
 				entradasQtdFrases.add(sc.nextInt());
 			}
 			
+			System.out.println(" ");
+			
 			totalFrasesAG.add(ag.CalculaQuantidadeFrases(tamCartao, entradasQtdCaract, entradasQtdFrases));
+			totalFrasesPD.add(pd.CalculaQuantidadeFrases(tamCartao, qtdFrases, entradasQtdCaract, entradasQtdFrases));
 			
-			
+			count++;
 		}while(tamCartao != 0 || qtdFrases != 0);
 
 	}
 	
-	private static void ImprimeResultado(ArrayList<Integer> totalFrasesAG) {
-		int count = 1;
+	private static void ImprimeResultado(ArrayList<Integer> totalFrasesAG, ArrayList<Integer> totalFrasesPD, int count) {
+		int counts = 1;
 		System.out.println("\nTestes encerrados!");
 		
 		if(!totalFrasesAG.isEmpty()) {
 			System.out.println("Resultado:");
 			
-			for (Integer integer : totalFrasesAG) {
-				System.out.println("\nTeste " + count);
-				System.out.println("Solução Gulosa: " + integer);
-				count++;
+			for (int i = 0; i < count; i++) {
+				System.out.println("\nTeste " + counts);
+				System.out.println("Solução Gulosa: " + totalFrasesAG.get(i));
+				System.out.println("Solução Programação Dinamica: " + totalFrasesPD.get(i) + "\n");
+				counts++;
 			}
+
 		}
 		
 	}
