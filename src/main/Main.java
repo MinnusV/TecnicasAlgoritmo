@@ -77,7 +77,7 @@ public class Main {
 			for (int i = 0; i < count; i++) {
 				System.out.println("\nTeste " + counts);
 				System.out.println("Solução Gulosa: " + totalFrasesAG.get(i));
-				System.out.println("Solução Programação Dinamica: " + totalFrasesPD.get(i) + "\n");
+				System.out.println("Solução Programação Dinamica: " + totalFrasesPD.get(i));
 				counts++;
 			}
 
